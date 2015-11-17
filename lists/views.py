@@ -3,8 +3,4 @@ from django.http import HttpResponse
 
 
 def home_page(request):
-    return HttpResponse("""<html>
-            <head>
-                <title>To-Do list</title>
-            </head>
-        </html>""")
+    return render(request, 'home.html')
