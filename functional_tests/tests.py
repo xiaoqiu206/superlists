@@ -6,10 +6,10 @@ Created on 2015年11月16日
 '''
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import unittest
+from django.test import LiveServerTestCase
 
 
-class NewVistorTest(unittest.TestCase):
+class NewVistorTest(LiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -25,7 +25,7 @@ class NewVistorTest(unittest.TestCase):
     def test_can_start_a_list_and_retrieve_it_later(self):
         # 伊迪丝听说有一个很酷的在线待办事项应用
         # 她去看了这个应用的首页
-        self.browser.get('http://localhost:8000')
+        self.browser.get(self.live_server_url)
 
         # 她注意到网页的标题和头部都包含"To-Do"这个词
         self.assertIn('To-Do', self.browser.title)
@@ -51,7 +51,7 @@ class NewVistorTest(unittest.TestCase):
         # 伊迪丝做事很有条理
         inputbox = self.browser.find_element_by_id('id_new_item')
         inputbox.send_keys('Use peacock feathers to make a fly')
-        inputbox.sned_keys(Keys.ENTER)
+        inputbox.send_keys(Keys.ENTER)
 
         # 页面再次更新,清单中显示了这2个待办事项
         self.check_for_row_in_list_table(
@@ -63,5 +63,4 @@ class NewVistorTest(unittest.TestCase):
         self.fail('Finish the test!')
 
         # 她访问哪个URL,发现待办事项还在
-if __name__ == '__main__':
-    unittest.main()
+
