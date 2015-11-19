@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>list</title>
+</head>
+<body>
+    <h1>Start a new To-Do list</h1>
+    <form action="/lists/new" method='POST'></form>
+    <input type="text" name='item_text' id="id_new_item" placeholder="Enter a to-do list item">
+    {% csrf_token %}
+</body>
+</html>
